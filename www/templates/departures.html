@@ -1,0 +1,24 @@
+<ion-view view-title="{{ $ctrl.station }}">
+    <ion-content>
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="$ctrl.activate()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-repeat="departure in $ctrl.departures" ng-click="$ctrl.showDetails(departure)">
+                <span class="item-note">
+                    {{ ::departure.VertrekTijd[0] | date: 'HH:mm' }}
+                </span>
+
+                <h2>{{ ::departure.EindBestemming[0] }}</h2>
+
+                    <p>
+                        {{ ::departure.TreinSoort[0] }}
+                        <span ng-if="::departure.VertrekSpoor[0]._">
+                            leaving from platform {{ ::departure.VertrekSpoor[0]._ }}
+                        </span>
+                    </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

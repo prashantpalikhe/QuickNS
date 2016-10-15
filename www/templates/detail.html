@@ -1,0 +1,18 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">{{ $ctrl.selectedDeparture.EindBestemming[0] }}</h1>
+        <button class="button button-primary" ng-click="$ctrl.modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+        <p>
+            {{ $ctrl.selectedDeparture.TreinSoort[0] }}
+            <span ng-if="$ctrl.selectedDeparture.VertrekSpoor[0]._">
+                leaving from platform {{ $ctrl.selectedDeparture.VertrekSpoor[0]._ }}
+            </span>
+        </p>
+
+        <p ng-if="$ctrl.selectedDeparture.VertrekVertraging">
+            Delayed: {{ $ctrl.selectedDeparture.VertrekVertragingTekst[0] }}
+        </p>
+    </ion-content>
+</ion-modal-view>
