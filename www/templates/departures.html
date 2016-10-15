@@ -10,7 +10,11 @@
         </ion-list>
 
         <ion-list ng-if="$ctrl.departures">
-            <ion-item ng-repeat="departure in $ctrl.departures">
+            <ion-item class="item-input">
+                <input type="search" placeholder="Search" ng-model="$ctrl.query">
+            </ion-item>
+
+            <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query">
                 <h2>
                     {{ ::departure.eindbestemming }}
                     <span>
