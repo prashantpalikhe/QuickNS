@@ -1,8 +1,7 @@
-$ns-color-text:                    #003082;
-$ns-color-brand:                   #ffc917;
+$ns-color-primary:                #003082;
+$ns-color-secondary:              #ffc917;
 
-$energized:                        $ns-color-brand;
-$bar-energized-text:               $ns-color-text;
+$bar-positive-bg:                 $ns-color-primary;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -24,5 +23,5 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .item h2 {
-    color: $ns-color-text;
+    color: $ns-color-primary;
 }
