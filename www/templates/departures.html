@@ -2,8 +2,8 @@
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="$ctrl.activate()"></ion-refresher>
 
-        <ion-list ng-if="$ctrl.loading">
-            <ion-item ng-repeat="loader in $ctrl.loaders track by $index">
+        <ion-list ng-if="!$ctrl.departures">
+            <ion-item ng-repeat="placeholder in $ctrl.placeholders track by $index">
                 <div class="loading-title"></div>
                 <div class="loading-subtitle"></div>
             </ion-item>
@@ -37,9 +37,5 @@
                 </p>
             </ion-item>
         </ion-list>
-
-        <p ng-if="$ctrl.error">
-            {{ $ctrl.error }}
-        </p>
     </ion-content>
 </ion-view>
