@@ -1,5 +1,5 @@
 angular
-    .module('quickns', ['ionic'])
+    .module('quickns', ['ionic', 'ngCordova'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
             if (window.cordova && window.cordova.plugins.Keyboard) {

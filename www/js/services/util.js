@@ -5,23 +5,24 @@
         .module('quickns')
         .factory('util', utilFactory);
 
-    function utilFactory($q) {
+    function utilFactory($q, $ionicPlatform, $cordovaGeolocation) {
         return {
             getCurrentLocation: getCurrentLocation,
             getDistanceBetweenPoints: getDistanceBetweenPoints
         };
-        
+
         function getCurrentLocation() {
             return $q(function(resolve, reject) {
-                navigator.geolocation.getCurrentPosition(success, error);
-
-                function success(position) {
-                    resolve(position.coords);
-                }
-
-                function error() {
-                    reject();
-                }
+                 $ionicPlatform.ready(function() {
+                     $cordovaGeolocation
+                         .getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
+                         .then(function(position) {
+                             resolve(position.coords);
+                         })
+                         .catch(function(error) {
+                             reject(error);
+                         });
+                 });
             });
         }
 

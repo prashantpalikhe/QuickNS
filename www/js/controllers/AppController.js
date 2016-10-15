@@ -9,6 +9,7 @@
         var ctrl = this;
 
         ctrl.currentLocation = null;
+        ctrl.stations = null;
 
         ctrl.activate = activate;
         ctrl.getDistance = getDistance;
@@ -24,8 +25,7 @@
 
             util.getCurrentLocation()
                 .then(function(location) {
-                    ctrl.currentLocation = location;
-                    return ctrl.currentLocation;
+                    return ctrl.currentLocation = location;
                 })
                 .then(getNearbyTrainStations)
                 .then(function(stations) {
