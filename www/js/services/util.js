@@ -15,7 +15,7 @@
             return $q(function(resolve, reject) {
                  $ionicPlatform.ready(function() {
                      $cordovaGeolocation
-                         .getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
+                         .getCurrentPosition({timeout: 10000, enableHighAccuracy: true})
                          .then(function(position) {
                              resolve(position.coords);
                          })
