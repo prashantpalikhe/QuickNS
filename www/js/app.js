@@ -9,6 +9,9 @@ angular
 
             if (window.StatusBar) {
                 StatusBar.styleDefault();
+                
+                // StatusBar.overlaysWebView(false);
+                // StatusBar.backgroundColorByHexString('#ffc917');
             }
         });
     })
