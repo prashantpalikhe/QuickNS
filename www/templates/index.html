@@ -1,9 +1,7 @@
-<ion-view view-title="Stations near you">
+<ion-view view-title="Stations in de buurt">
     <ion-content>
-        <ion-refresher
-                pulling-text="Find stations again..."
-                on-refresh="$ctrl.activate()">
-        </ion-refresher>
+        <ion-refresher pulling-text="Vernieuw..." on-refresh="$ctrl.activate()"></ion-refresher>
+
         <ion-list>
             <ion-item ng-repeat="station in $ctrl.stations" ng-click="$ctrl.goToDepartures(station.name)">
                 {{ ::station.name }}

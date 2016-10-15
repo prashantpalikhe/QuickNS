@@ -2,7 +2,7 @@ $ns-color-text:                    #003082;
 $ns-color-brand:                   #ffc917;
 
 $energized:                        $ns-color-brand;
-$bar-energized-text:              $ns-color-text;
+$bar-energized-text:               $ns-color-text;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -21,4 +21,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     width: 45%;
     height: 12px;
     background: #f5f5f5;
+}
+
+.item h2 {
+    color: $ns-color-text;
 }

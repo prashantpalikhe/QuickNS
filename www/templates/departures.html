@@ -1,6 +1,6 @@
 <ion-view view-title="{{ $ctrl.station }}">
     <ion-content>
-        <ion-refresher pulling-text="Pull to refresh..." on-refresh="$ctrl.activate()"></ion-refresher>
+        <ion-refresher pulling-text="Vernieuw..." on-refresh="$ctrl.activate()"></ion-refresher>
 
         <ion-list ng-if="!$ctrl.departures">
             <ion-item ng-repeat="placeholder in $ctrl.placeholders track by $index">
@@ -12,28 +12,28 @@
         <ion-list ng-if="$ctrl.departures">
             <ion-item class="item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search" ng-model="$ctrl.query">
+                <input type="search" placeholder="Zoeken..." ng-model="$ctrl.query">
             </ion-item>
 
             <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query">
+                <span class="item-note" ng-if="::departure.vertrekspoor._">
+                    Spoor {{ ::departure.vertrekspoor._ }}
+                </span>
+
                 <h2>
                     {{ ::departure.eindbestemming }}
-                    <span>
-                        - {{ ::departure.treinsoort }}
-                    </span>
                 </h2>
+
+                <p>{{ ::departure.treinsoort }}</p>
 
                 <p ng-if="::departure.routetekst">
                     via {{ ::departure.routetekst }}
                 </p>
 
                 <p>
-                    Departs at {{ ::departure.vertrektijd | date: 'HH:mm' }}
+                    <i class="ion-clock"></i> {{ ::departure.vertrektijd | date: 'HH:mm' }}
                     <span class="assertive" ng-if="departure.vertrekvertraging">
                         ({{ departure.vertrekvertragingtekst }})
-                    </span>
-                    <span ng-if="::departure.vertrekspoor._">
-                        from platform {{ ::departure.vertrekspoor._ }}
                     </span>
                 </p>
             </ion-item>

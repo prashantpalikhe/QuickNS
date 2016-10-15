@@ -19,7 +19,7 @@
 
         function activate() {
             $ionicLoading.show({
-                template: 'Finding stations near you...',
+                template: 'Zoekt stations in de buurt...',
                 delay: 1000
             });
 

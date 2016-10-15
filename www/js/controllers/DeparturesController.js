@@ -19,7 +19,7 @@
 
         function activate() {
             $ionicLoading.show({
-                template: 'Getting departures for station',
+                template: 'Vertrektijden ophalen...',
                 delay: 1000
             });
 
