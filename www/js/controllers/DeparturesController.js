@@ -8,13 +8,15 @@
     function DeparturesController($scope, $http, $stateParams, $ionicLoading) {
         var ctrl = this;
 
+        ctrl.loading = true;
+        ctrl.loaders = new Array(10);
         ctrl.departures = null;
         ctrl.error = null;
 
         ctrl.activate = activate;
         ctrl.station = $stateParams.station;
 
-        activate();
+        $scope.$on('$ionicView.afterEnter', activate);
 
         function activate() {
             $ionicLoading.show({
@@ -30,6 +32,8 @@
                     ctrl.error = error.message;
                 })
                 .finally(function() {
+                    ctrl.loading = false;
+
                     $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
                 });

@@ -2,12 +2,19 @@
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="$ctrl.activate()"></ion-refresher>
 
+        <ion-list ng-if="$ctrl.loading">
+            <ion-item ng-repeat="loader in $ctrl.loaders track by $index">
+                <div class="loading-title"></div>
+                <div class="loading-subtitle"></div>
+            </ion-item>
+        </ion-list>
+
         <ion-list ng-if="$ctrl.departures">
             <ion-item ng-repeat="departure in $ctrl.departures">
                 <h2>
                     {{ ::departure.eindbestemming }}
                     <span>
-                        ({{ ::departure.treinsoort }})
+                        - {{ ::departure.treinsoort }}
                     </span>
                 </h2>
 
