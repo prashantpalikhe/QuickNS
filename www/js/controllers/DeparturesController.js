@@ -5,7 +5,7 @@
         .module('quickns')
         .controller('DeparturesController', DeparturesController);
 
-    function DeparturesController($scope, $stateParams, $ionicLoading, data) {
+    function DeparturesController($filter, $scope, $stateParams, $ionicLoading, $cordovaSocialSharing, data) {
         var ctrl = this;
 
         ctrl.error = null;
@@ -14,6 +14,7 @@
         ctrl.station = $stateParams.station;
 
         ctrl.activate = activate;
+        ctrl.share = share;
 
         $scope.$on('$ionicView.afterEnter', activate);
 
@@ -34,6 +35,30 @@
                     $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
                 });
+        }
+        
+        function share(departure) {
+            var message = departure.eindbestemming + '\n';
+            message += departure.treinsoort + '\n';
+
+            if (departure.routetekst) {
+                message += 'via ' + departure.routetekst + '\n';
+            }
+
+            message += 'Om ' + $filter('date')(departure.vertrektijd, 'HH:mm');
+
+            if (departure.vertrekvertraging) {
+                message += '(' + departure.vertrekvertragingtekst +')'
+            }
+
+            message += '\n';
+
+            if (departure.vertrekspoor._) {
+                message += 'Spoor ' + departure.vertrekspoor._;
+            }
+
+            $cordovaSocialSharing
+                .share(message, 'Vertrek info');
         }
     }
 })();

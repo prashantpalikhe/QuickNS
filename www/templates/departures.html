@@ -15,7 +15,7 @@
                 <input type="search" placeholder="Zoeken..." ng-model="$ctrl.query">
             </ion-item>
 
-            <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query">
+            <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query" ng-click="$ctrl.share(departure)">
                 <span class="item-note" ng-if="::departure.vertrekspoor._">
                     Spoor {{ ::departure.vertrekspoor._ }}
                 </span>
