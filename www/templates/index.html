@@ -5,8 +5,12 @@
                 on-refresh="$ctrl.activate()">
         </ion-refresher>
         <ion-list>
-            <ion-item ng-repeat="station in $ctrl.stations" ng-click="$ctrl.findDepartures(station)">
-                {{ station }}
+            <ion-item ng-repeat="station in $ctrl.stations" ng-click="$ctrl.goToDepartures(station.name)">
+                {{ ::station.name }}
+
+                <p class="item-note">
+                    {{ ::$ctrl.getDistance(station) }} km
+                </p>
             </ion-item>
         </ion-list>
     </ion-content>

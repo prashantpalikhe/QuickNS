@@ -5,11 +5,13 @@
         .module('quickns')
         .controller('DeparturesController', DeparturesController);
 
-    function DeparturesController($scope, $http, $stateParams, $ionicLoading, $ionicModal) {
+    function DeparturesController($scope, $http, $stateParams, $ionicLoading) {
         var ctrl = this;
 
+        ctrl.departures = null;
+        ctrl.error = null;
+
         ctrl.activate = activate;
-        ctrl.showDetails = showDetails;
         ctrl.station = $stateParams.station;
 
         activate();
@@ -23,30 +25,14 @@
             getDepartures(ctrl.station)
                 .then(function(departures) {
                     ctrl.departures = departures;
-                    console.log(departures);
+                })
+                .catch(function(error) {
+                    ctrl.error = error.message;
                 })
                 .finally(function() {
                     $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
                 });
-
-            setupDetailsModal();
-        }
-
-        function setupDetailsModal() {
-            $ionicModal.fromTemplateUrl('templates/detail.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function(modal) {
-                ctrl.modal = modal;
-            });
-        }
-
-        function showDetails(departure) {
-            console.log(departure);
-            ctrl.selectedDeparture = departure;
-
-            ctrl.modal.show();
         }
 
         function getDepartures(station) {
@@ -61,16 +47,12 @@
                 .then(function(response) {
                     var data = response.data;
 
-                    return data.ActueleVertrekTijden.VertrekkendeTrein;
+                    if (data.error) {
+                        throw new Error(data.error.message[0]);
+                    }
+
+                    return data.actuelevertrektijden.vertrekkendetrein;
                 });
         }
-
-        $scope.$on('$destroy', function() {
-            ctrl.modal.remove();
-        });
-
-        $scope.$on('modal.hidden', function() {
-            ctrl.selectedDeparture = null;
-        });
     }
 })();
