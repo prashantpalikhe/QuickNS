@@ -5,7 +5,7 @@
         .module('quickns')
         .controller('AppController', AppController);
 
-    function AppController($scope, $http, $ionicLoading, $state, util) {
+    function AppController($scope, $ionicLoading, $state, util, data) {
         var ctrl = this;
 
         ctrl.currentLocation = null;
@@ -27,21 +27,13 @@
                 .then(function(location) {
                     return ctrl.currentLocation = location;
                 })
-                .then(getNearbyTrainStations)
+                .then(data.getNearbyTrainStations)
                 .then(function(stations) {
                     ctrl.stations = stations;
                 })
                 .finally(function() {
                     $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
-                });
-        }
-
-        function getNearbyTrainStations(coords) {
-            return $http
-                .get('http://api.pixelscamp.prashantpalikhe.com:3001/api/nts/' + coords.latitude + '/' + coords.longitude)
-                .then(function(response) {
-                    return response.data.results;
                 });
         }
 
