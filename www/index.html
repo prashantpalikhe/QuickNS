@@ -20,8 +20,10 @@
         <script src="js/app.js"></script>
         <script src="js/services/util.js"></script>
         <script src="js/services/data.js"></script>
+        <script src="js/services/bookmarks.js"></script>
         <script src="js/controllers/AppController.js"></script>
         <script src="js/controllers/DeparturesController.js"></script>
+        <script src="js/controllers/BookmarksController.js"></script>
     </head>
 
     <body ng-app="quickns">
@@ -45,8 +47,11 @@
                 </ion-header-bar>
                 <ion-content>
                     <ion-list>
+                        <ion-item menu-close="" href="#/">
+                            In de buurt
+                        </ion-item>
                         <ion-item menu-close="" href="#/bookmarks">
-                            My bookmarks
+                            Favorieten
                         </ion-item>
                     </ion-list>
                 </ion-content>

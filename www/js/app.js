@@ -30,6 +30,14 @@ angular
                 templateUrl: 'templates/departures.html',
                 controller: 'DeparturesController',
                 controllerAs: '$ctrl'
+            })
+
+            .state('bookmarks', {
+                url: '/bookmarks',
+                templateUrl: 'templates/bookmarks.html',
+                controller: 'BookmarksController',
+                controllerAs: '$ctrl',
+                cache: false
             });
 
         $urlRouterProvider.otherwise('/');

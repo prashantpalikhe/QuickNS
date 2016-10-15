@@ -1,27 +1,13 @@
 $ns-color-primary:                #003082;
 $ns-color-secondary:              #ffc917;
 
-$bar-positive-bg:                 $ns-color-primary;
+$energized:                       $ns-color-secondary;
+$positive:                        $ns-color-primary;
 
-// The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-.loading-title {
-    width: 100%;
-    height: 12px;
-    background: #e5e5e5;
-    margin-bottom: 10px;
-}
-
-.loading-subtitle {
-    width: 45%;
-    height: 12px;
-    background: #f5f5f5;
-}
-
-.item h2 {
-    color: $ns-color-primary;
-}
+@import "button";
+@import "loading";
