@@ -16,12 +16,12 @@
         <ion-list can-swipe="true">
             <ion-item class="item-divider">In de buurt</ion-item>
 
-            <ion-item ng-if="!$ctrl.stations" ng-repeat="placeholder in [1, 2, 3, 4, 5] track by $index">
+            <ion-item ng-if="!$ctrl.stations" ng-repeat="placeholder in [1, 2, 3, 4, 5, 6, 7] track by $index">
                 <div class="loading-title"></div>
                 <div class="loading-subtitle"></div>
             </ion-item>
 
-            <ion-item ng-repeat="station in $ctrl.stations" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station.name)">
+            <ion-item ng-repeat="station in $ctrl.stations track by station.id" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station.name)">
                 {{ ::station.name }}
 
                 <p class="item-note">
