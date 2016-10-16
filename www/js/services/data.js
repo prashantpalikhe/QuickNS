@@ -6,7 +6,7 @@
         .factory('data', dataFactory)
         .constant('API_BASE_URL', 'http://quikns.prashantpalikhe.com:3002/api');
 
-    function dataFactory($q, $http, API_BASE_URL) {
+    function dataFactory($http, API_BASE_URL) {
         return {
             getNearbyTrainStations: getNearbyTrainStations,
             getDepartures: getDepartures
@@ -16,10 +16,6 @@
             return $http
                 .get(API_BASE_URL + '/train-stations-nearby/' + coords.latitude + '/' + coords.longitude)
                 .then(function(response) {
-                    if (!angular.isArray(response.data.results) || !response.data.results.length) {
-                        return $q.reject();
-                    }
-
                     return response.data.results;
                 });
         }
