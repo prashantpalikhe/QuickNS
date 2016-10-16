@@ -4,7 +4,19 @@
     angular
         .module('quikns')
         .factory('data', dataFactory)
-        .constant('API_BASE_URL', 'http://quikns.prashantpalikhe.com:3002/api');
+        .constant('API_BASE_URL', 'http://quikns.prashantpalikhe.com:3002/api')
+        .filter('highlight', function($sce) {
+            return function(text, phrase) {
+                if (phrase) {
+                    text = text.replace(
+                        new RegExp('(' + phrase + ')', 'gi'),
+                        '<span class="highlighted">$1</span>'
+                    );
+                }
+
+                return $sce.trustAsHtml(text)
+            }
+        });
 
     function dataFactory($http, API_BASE_URL) {
         return {

@@ -9820,4 +9820,7 @@ a.button {
   position: absolute;
   right: 16px;
   top: 50%;
-  transform: translateY(-50%); }
+  transform: translate(50%, -50%); }
+
+.highlighted {
+  background: #a8d1ff; }

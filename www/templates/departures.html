@@ -28,9 +28,12 @@
 
                 <p>{{ ::departure.trainType }}</p>
 
-                <p ng-if="::departure.via">
-                    via {{ ::departure.via }}
-                </p>
+                <div ng-if="::departure.via">
+                    <p>
+                        via
+                        <span ng-bind-html="departure.via | highlight:$ctrl.query"></span>
+                    </p>
+                </div>
 
                 <p>
                     <i class="ion-clock"></i> {{ ::departure.time }}
