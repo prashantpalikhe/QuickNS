@@ -20,6 +20,7 @@
             <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query" ng-click="$ctrl.share(departure)">
                 <span class="item-note" ng-if="::departure.platform">
                     Spoor {{ ::departure.platform }}
+                    <span ng-if="::departure.platformHasChanged === 'true'"> - gewijzigd</span>
                 </span>
 
                 <h2>
@@ -28,17 +29,21 @@
 
                 <p>{{ ::departure.trainType }}</p>
 
-                <div ng-if="::departure.via">
-                    <p>
-                        via
-                        <span ng-bind-html="departure.via | highlight:$ctrl.query"></span>
-                    </p>
-                </div>
+                <p ng-if="::departure.via">
+                    via
+                    <span ng-bind-html="departure.via | highlight:$ctrl.query"></span>
+                </p>
 
                 <p>
                     <i class="ion-clock"></i> {{ ::departure.time }}
                     <span class="assertive" ng-if="departure.delay">
                         ({{ departure.delay }})
+                    </span>
+                </p>
+
+                <p ng-if="::departure.notice">
+                    <span class="assertive">
+                        {{ ::departure.notice }}
                     </span>
                 </p>
             </ion-item>
