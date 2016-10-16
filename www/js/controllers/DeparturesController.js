@@ -38,23 +38,23 @@
         }
         
         function share(departure) {
-            var message = departure.eindbestemming + '\n';
-            message += departure.treinsoort + '\n';
+            var message = departure.destination + '\n';
+            message += departure.trainType + '\n';
 
-            if (departure.routetekst) {
-                message += 'via ' + departure.routetekst + '\n';
+            if (departure.via) {
+                message += 'via ' + departure.via + '\n';
             }
 
-            message += 'Om ' + $filter('date')(departure.vertrektijd, 'HH:mm');
+            message += departure.time;
 
-            if (departure.vertrekvertraging) {
-                message += '(' + departure.vertrekvertragingtekst +')'
+            if (departure.delay) {
+                message += '(' + departure.delay +')'
             }
 
             message += '\n';
 
-            if (departure.vertrekspoor._) {
-                message += 'Spoor ' + departure.vertrekspoor._;
+            if (departure.platform) {
+                message += 'Spoor ' + departure.platform;
             }
 
             $cordovaSocialSharing
