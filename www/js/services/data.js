@@ -3,9 +3,10 @@
 
     angular
         .module('quickns')
-        .factory('data', dataFactory);
+        .factory('data', dataFactory)
+        .constant('API_BASE_URL', 'http://quikns.prashantpalikhe.com:3002/api');
 
-    function dataFactory($q, $http) {
+    function dataFactory($q, $http, API_BASE_URL) {
         return {
             getNearbyTrainStations: getNearbyTrainStations,
             getDepartures: getDepartures
@@ -13,7 +14,7 @@
 
         function getNearbyTrainStations(coords) {
             return $http
-                .get('http://api.pixelscamp.prashantpalikhe.com:3001/api/nts/' + coords.latitude + '/' + coords.longitude)
+                .get(API_BASE_URL + '/train-stations-nearby/' + coords.latitude + '/' + coords.longitude)
                 .then(function(response) {
                     if (!angular.isArray(response.data.results) || !response.data.results.length) {
                         return $q.reject();
@@ -24,26 +25,10 @@
         }
 
         function getDepartures(station) {
-            if (!angular.isString(station)) {
-                return $q.reject();
-            }
-
-            station = station.toLowerCase();
-
-            if (station.includes('station')) {
-                station = station.slice(0, station.indexOf('station')).trim();
-            }
-
             return $http
-                .get('http://api.pixelscamp.prashantpalikhe.com:3001/api/departures/' + station)
+                .get(API_BASE_URL + '/departures/' + encodeURIComponent(station))
                 .then(function(response) {
-                    var data = response.data;
-
-                    if (data.error) {
-                        return $q.reject(data.error.message);
-                    }
-
-                    return data.actuelevertrektijden.vertrekkendetrein;
+                    return response.data;
                 });
         }
     }

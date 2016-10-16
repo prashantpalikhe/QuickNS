@@ -16,24 +16,24 @@
             </ion-item>
 
             <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query" ng-click="$ctrl.share(departure)">
-                <span class="item-note" ng-if="::departure.vertrekspoor._">
-                    Spoor {{ ::departure.vertrekspoor._ }}
+                <span class="item-note" ng-if="::departure.platform">
+                    Spoor {{ ::departure.platform }}
                 </span>
 
                 <h2>
-                    {{ ::departure.eindbestemming }}
+                    {{ ::departure.destination }}
                 </h2>
 
-                <p>{{ ::departure.treinsoort }}</p>
+                <p>{{ ::departure.trainType }}</p>
 
-                <p ng-if="::departure.routetekst">
-                    via {{ ::departure.routetekst }}
+                <p ng-if="::departure.via">
+                    via {{ ::departure.via }}
                 </p>
 
                 <p>
-                    <i class="ion-clock"></i> {{ ::departure.vertrektijd | date: 'HH:mm' }}
-                    <span class="assertive" ng-if="departure.vertrekvertraging">
-                        ({{ departure.vertrekvertragingtekst }})
+                    <i class="ion-clock"></i> {{ ::departure.time }}
+                    <span class="assertive" ng-if="departure.delay">
+                        ({{ departure.delay }})
                     </span>
                 </p>
             </ion-item>
