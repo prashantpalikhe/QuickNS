@@ -30,3 +30,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .item-complex .item-content {
     padding-right: 16px;
 }
+
+.button.button-icon.input-button {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translate(50%, -50%);
+}

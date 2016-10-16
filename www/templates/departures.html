@@ -13,6 +13,8 @@
             <ion-item class="item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="search" placeholder="Zoeken..." ng-model="$ctrl.query">
+                <button ng-if="$ctrl.query.length" class="input-button button button-icon ion-android-close" ng-click="$ctrl.query = ''">
+                </button>
             </ion-item>
 
             <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query" ng-click="$ctrl.share(departure)">
