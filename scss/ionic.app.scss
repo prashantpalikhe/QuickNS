@@ -25,3 +25,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .item h2 {
     color: $ns-color-primary;
 }
+
+
+.item-complex .item-content {
+    padding-right: 16px;
+}

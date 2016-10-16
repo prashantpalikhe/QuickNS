@@ -5,24 +5,28 @@
         .module('quikns')
         .controller('AppController', AppController);
 
-    function AppController($scope, $ionicLoading, $state, util, data) {
+    function AppController($scope, $state, util, data, favs) {
         var ctrl = this;
 
-        ctrl.currentLocation = null;
         ctrl.stations = null;
+        ctrl.favStations = null;
+        ctrl.currentLocation = null;
 
+        ctrl.isFaved = isFaved;
         ctrl.activate = activate;
+        ctrl.toggleFav = toggleFav;
         ctrl.getDistance = getDistance;
         ctrl.goToDepartures = goToDepartures;
 
         activate();
 
-        function activate() {
-            $ionicLoading.show({
-                template: 'Zoekt stations in de buurt...',
-                delay: 1000
-            });
+        $scope.$on('$ionicView.enter', updateFavStations);
 
+        function updateFavStations() {
+            ctrl.favStations = favs.list();
+        }
+
+        function activate() {
             util.getCurrentLocation()
                 .then(function(location) {
                     return ctrl.currentLocation = location;
@@ -32,7 +36,6 @@
                     ctrl.stations = stations;
                 })
                 .finally(function() {
-                    $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
                 });
         }
@@ -48,6 +51,21 @@
                 station.geometry.location.lat,
                 station.geometry.location.lng
             );
+        }
+
+        function isFaved(station) {
+            return favs.has(station);
+        }
+
+        function toggleFav(station) {
+            if (isFaved(station)) {
+                favs.remove(station);
+
+            } else {
+                favs.add(station);
+            }
+
+            updateFavStations();
         }
     }
 })();

@@ -16,7 +16,7 @@
             return $http
                 .get(API_BASE_URL + '/train-stations-nearby/' + coords.latitude + '/' + coords.longitude)
                 .then(function(response) {
-                    return response.data.results;
+                    return response.data;
                 });
         }
 
