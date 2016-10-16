@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('quickns')
+        .module('quikns')
         .factory('util', utilFactory);
 
     function utilFactory($q, $ionicPlatform, $cordovaGeolocation) {

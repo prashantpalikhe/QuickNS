@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('quickns')
+        .module('quikns')
         .controller('DeparturesController', DeparturesController);
 
     function DeparturesController($filter, $scope, $stateParams, $ionicLoading, $cordovaSocialSharing, data) {

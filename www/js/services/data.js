@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('quickns')
+        .module('quikns')
         .factory('data', dataFactory)
         .constant('API_BASE_URL', 'http://quikns.prashantpalikhe.com:3002/api');
 

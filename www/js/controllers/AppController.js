@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('quickns')
+        .module('quikns')
         .controller('AppController', AppController);
 
     function AppController($scope, $ionicLoading, $state, util, data) {
