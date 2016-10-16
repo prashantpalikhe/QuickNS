@@ -5,8 +5,9 @@
         .module('quikns')
         .controller('DeparturesController', DeparturesController);
 
-    function DeparturesController($filter, $scope, $stateParams, $ionicLoading, $cordovaSocialSharing, data) {
+    function DeparturesController($scope, $stateParams, $cordovaSocialSharing, data) {
         var ctrl = this;
+        var viewEntered = false;
 
         ctrl.error = null;
         ctrl.departures = null;
@@ -16,27 +17,32 @@
         ctrl.activate = activate;
         ctrl.share = share;
 
-        $scope.$on('$ionicView.afterEnter', activate);
+        activate();
+
+        $scope.$on('$ionicView.afterEnter', function() {
+            viewEntered = true;
+        });
 
         function activate() {
-            $ionicLoading.show({
-                template: 'Vertrektijden ophalen...',
-                delay: 1000
-            });
-
             data.getDepartures(ctrl.station)
                 .then(function(departures) {
-                    ctrl.departures = departures;
+                    if (viewEntered) {
+                        ctrl.departures = departures;
+
+                    } else {
+                        $scope.$on('$ionicView.afterEnter', function() {
+                            ctrl.departures = departures;
+                        });
+                    }
                 })
                 .catch(function(error) {
                     ctrl.error = error;
                 })
                 .finally(function() {
-                    $ionicLoading.hide();
                     $scope.$broadcast('scroll.refreshComplete');
                 });
         }
-        
+
         function share(departure) {
             var message = departure.destination + '\n';
             message += departure.trainType + '\n';
@@ -57,8 +63,7 @@
                 message += 'Spoor ' + departure.platform;
             }
 
-            $cordovaSocialSharing
-                .share(message, 'Vertrek info');
+            $cordovaSocialSharing.share(message, 'Vertrek info');
         }
     }
 })();
