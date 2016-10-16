@@ -18,13 +18,7 @@
         ctrl.getDistance = getDistance;
         ctrl.goToDepartures = goToDepartures;
 
-        activate();
-
-        $scope.$on('$ionicView.enter', updateFavStations);
-
-        function updateFavStations() {
-            ctrl.favStations = favs.list();
-        }
+        $scope.$on('$ionicView.enter', activate);
 
         function activate() {
             util.getCurrentLocation()
@@ -65,7 +59,7 @@
                 favs.add(station);
             }
 
-            updateFavStations();
+            ctrl.favStations = favs.list();
         }
     }
 })();
