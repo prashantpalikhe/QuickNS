@@ -23,15 +23,20 @@
         <script src="js/services/util.js"></script>
         <script src="js/services/data.js"></script>
         <script src="js/controllers/AppController.js"></script>
+        <script src="js/controllers/HomeController.js"></script>
         <script src="js/controllers/SearchController.js"></script>
         <script src="js/controllers/DeparturesController.js"></script>
     </head>
 
     <body ng-app="quikns">
-        <ion-nav-bar class="bar-positive">
-            <ion-nav-back-button></ion-nav-back-button>
-        </ion-nav-bar>
 
-        <ion-nav-view></ion-nav-view>
+        <div ng-controller="AppController as app">
+            <ion-nav-bar class="bar-positive">
+                <ion-nav-back-button></ion-nav-back-button>
+            </ion-nav-bar>
+
+            <ion-nav-view></ion-nav-view>
+        </div>
+
     </body>
 </html>

@@ -13,14 +13,14 @@
                 <div class="loading-subtitle"></div>
             </ion-item>
 
-            <ion-item ng-repeat="station in $ctrl.stations track by station.code" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station)">
+            <ion-item ng-repeat="station in $ctrl.stations track by station.code" ng-click="$ctrl.goToDepartures(station.name)" on-hold="app.toggleFav(station, true)">
                 {{ ::station.name }}
 
-                <ion-option-button ion-stop-event="click" class="button-assertive" ng-if="$ctrl.isFaved(station)" ng-click="$ctrl.toggleFav(station)">
+                <ion-option-button ion-stop-event="click" class="button-assertive" ng-if="app.isFaved(station)" ng-click="app.toggleFav(station, true)">
                     Unfav
                 </ion-option-button>
 
-                <ion-option-button ion-stop-event="click" class="button-balanced" ng-if="!$ctrl.isFaved(station)" ng-click="$ctrl.toggleFav(station)">
+                <ion-option-button ion-stop-event="click" class="button-balanced" ng-if="!app.isFaved(station)" ng-click="app.toggleFav(station, true)">
                     Fav
                 </ion-option-button>
             </ion-item>

@@ -20,8 +20,8 @@ angular
 
             .state('index', {
                 url: '/',
-                templateUrl: 'templates/index.html',
-                controller: 'AppController',
+                templateUrl: 'templates/home.html',
+                controller: 'HomeController',
                 controllerAs: '$ctrl'
             })
 

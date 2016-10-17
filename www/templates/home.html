@@ -5,12 +5,12 @@
     <ion-content>
         <ion-refresher pulling-text="Vernieuw..." on-refresh="$ctrl.activate()"></ion-refresher>
 
-        <ion-list can-swipe="true" ng-if="$ctrl.favStations.length">
+        <ion-list can-swipe="true" ng-if="app.favStations.length">
             <ion-item class="item-divider">Favorieten</ion-item>
-            <ion-item ng-repeat="station in $ctrl.favStations" ng-click="$ctrl.goToDepartures(station.name)">
+            <ion-item ng-repeat="station in app.favStations" ng-click="$ctrl.goToDepartures(station.name)">
                 {{ ::station.name }}
 
-                <ion-option-button ion-stop-event="click" class="button-assertive" ng-click="$ctrl.toggleFav(station)">
+                <ion-option-button ion-stop-event="click" class="button-assertive" ng-click="app.toggleFav(station)">
                     Unfav
                 </ion-option-button>
             </ion-item>
@@ -24,18 +24,18 @@
                 <div class="loading-subtitle"></div>
             </ion-item>
 
-            <ion-item ng-repeat="station in $ctrl.stations track by station.code" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station)">
+            <ion-item ng-repeat="station in $ctrl.stations track by station.code" ng-click="$ctrl.goToDepartures(station.name)" on-hold="app.toggleFav(station)">
                 {{ ::station.name }}
 
                 <p class="item-note">
                     {{ ::station.distance }} km
                 </p>
 
-                <ion-option-button ion-stop-event="click" class="button-assertive" ng-if="$ctrl.isFaved(station)" ng-click="$ctrl.toggleFav(station)">
+                <ion-option-button ion-stop-event="click" class="button-assertive" ng-if="app.isFaved(station)" ng-click="app.toggleFav(station)">
                     Unfav
                 </ion-option-button>
 
-                <ion-option-button ion-stop-event="click" class="button-balanced" ng-if="!$ctrl.isFaved(station)" ng-click="$ctrl.toggleFav(station)">
+                <ion-option-button ion-stop-event="click" class="button-balanced" ng-if="!app.isFaved(station)" ng-click="app.toggleFav(station)">
                     Fav
                 </ion-option-button>
             </ion-item>

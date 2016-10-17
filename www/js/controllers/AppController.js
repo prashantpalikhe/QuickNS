@@ -5,68 +5,36 @@
         .module('quikns')
         .controller('AppController', AppController);
 
-    function AppController($scope, $state, util, data, favs) {
+    function AppController($state, $cordovaToast, favs) {
         var ctrl = this;
 
-        ctrl.stations = null;
-        ctrl.favStations = null;
-        ctrl.currentLocation = null;
+        ctrl.favStations = favs.list();
 
         ctrl.isFaved = isFaved;
-        ctrl.activate = activate;
         ctrl.toggleFav = toggleFav;
-        ctrl.getDistance = getDistance;
         ctrl.goToDepartures = goToDepartures;
-
-        $scope.$on('$ionicView.enter', updateFavStations);
-
-        activate();
-
-        function activate() {
-            util.getCurrentLocation()
-                .then(function(location) {
-                    return ctrl.currentLocation = location;
-                })
-                .then(data.getNearbyTrainStations)
-                .then(function(stations) {
-                    ctrl.stations = stations;
-                })
-                .finally(function() {
-                    $scope.$broadcast('scroll.refreshComplete');
-                });
-        }
-
-        function goToDepartures(station) {
-            $state.go('departures', {station: station});
-        }
-
-        function getDistance(station) {
-            return util.getDistanceBetweenPoints(
-                ctrl.currentLocation.latitude,
-                ctrl.currentLocation.longitude,
-                station.geometry.location.lat,
-                station.geometry.location.lng
-            );
-        }
 
         function isFaved(station) {
             return favs.has(station);
         }
 
-        function toggleFav(station) {
+        function toggleFav(station, toast) {
+            toast = toast === true;
+
             if (isFaved(station)) {
                 favs.remove(station);
+                toast && $cordovaToast.show(station.name + ' is verwijdered uit favorieten', 2000, 'bottom');
 
             } else {
                 favs.add(station);
+                toast && $cordovaToast.show(station.name + ' is toegevoegd aan favorieten', 2000, 'bottom');
             }
 
-            updateFavStations();
+            ctrl.favStations = favs.list();
         }
 
-        function updateFavStations() {
-            ctrl.favStations = favs.list();
+        function goToDepartures(stationName) {
+            $state.go('departures', {station: stationName});
         }
     }
 })();
-
