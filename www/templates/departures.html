@@ -18,9 +18,8 @@
             </ion-item>
 
             <ion-item ng-repeat="departure in $ctrl.departures | filter: $ctrl.query" ng-click="$ctrl.share(departure)">
-                <span class="item-note" ng-if="::departure.platform">
+                <span class="item-note" ng-class="{'assertive': departure.platformHasChanged === 'true'}" ng-if="::departure.platform">
                     Spoor {{ ::departure.platform }}
-                    <span ng-if="::departure.platformHasChanged === 'true'"> - gewijzigd</span>
                 </span>
 
                 <h2>

@@ -18,7 +18,7 @@
         ctrl.getDistance = getDistance;
         ctrl.goToDepartures = goToDepartures;
 
-        $scope.$on('$ionicView.enter', activate);
+        activate();
 
         function activate() {
             util.getCurrentLocation()
