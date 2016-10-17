@@ -40,6 +40,12 @@
                     </span>
                 </p>
 
+                <p ng-if="::departure.notice">
+                    <span class="balanced">
+                        {{ ::departure.notice }}
+                    </span>
+                </p>
+
                 <p ng-if="::departure.remark">
                     <span class="assertive">
                         {{ ::departure.remark }}
