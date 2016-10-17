@@ -3,7 +3,7 @@
         <ion-list can-swipe="true">
             <ion-item class="item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Zoeken..." autofocus ng-model="$ctrl.query" ng-model-options="{ debounce: 500 }" ng-change="$ctrl.searchStations($ctrl.query)">
+                <input type="search" placeholder="bijv. Utrecht Centraal..." autofocus ng-model="$ctrl.query" ng-model-options="{ debounce: 500 }" ng-change="$ctrl.searchStations($ctrl.query)">
                 <button ng-if="$ctrl.query.length" class="input-button button button-icon ion-android-close" ng-click="$ctrl.query = ''">
                 </button>
             </ion-item>
