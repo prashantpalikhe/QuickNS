@@ -5,7 +5,7 @@
         .module('quikns')
         .controller('DeparturesController', DeparturesController);
 
-    function DeparturesController($scope, $stateParams, $ionicActionSheet, $cordovaSocialSharing, data) {
+    function DeparturesController($scope, $state, $stateParams, $ionicActionSheet, $cordovaSocialSharing, data) {
         var ctrl = this;
         var viewEntered = false;
 
@@ -70,6 +70,7 @@
 
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
+                    {text: 'Toon vertrek vanaf hier'},
                     {text: 'Deel'}
                 ],
                 titleText: departure.destination,
@@ -79,6 +80,9 @@
                 },
                 buttonClicked: function(index) {
                     if (index === 0) {
+                        $state.go('departures', {station: departure.destination});
+
+                    } else if (index === 1) {
                         share(departure);
                     }
                 }
