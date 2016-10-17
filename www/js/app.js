@@ -30,6 +30,13 @@ angular
                 templateUrl: 'templates/departures.html',
                 controller: 'DeparturesController',
                 controllerAs: '$ctrl'
+            })
+
+            .state('search', {
+                url: '/search',
+                templateUrl: 'templates/search.html',
+                controller: 'SearchController',
+                controllerAs: '$ctrl'
             });
 
         $urlRouterProvider.otherwise('/');

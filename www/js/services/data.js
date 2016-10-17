@@ -21,7 +21,8 @@
     function dataFactory($http, API_BASE_URL) {
         return {
             getNearbyTrainStations: getNearbyTrainStations,
-            getDepartures: getDepartures
+            getDepartures: getDepartures,
+            searchStations: searchStations
         };
 
         function getNearbyTrainStations(coords) {
@@ -35,6 +36,14 @@
         function getDepartures(station) {
             return $http
                 .get(API_BASE_URL + '/departures/' + encodeURIComponent(station))
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function searchStations(query) {
+            return $http
+                .get(API_BASE_URL + '/train-stations-search/' + query)
                 .then(function(response) {
                     return response.data;
                 });
