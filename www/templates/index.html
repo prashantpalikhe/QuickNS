@@ -21,11 +21,11 @@
                 <div class="loading-subtitle"></div>
             </ion-item>
 
-            <ion-item ng-repeat="station in $ctrl.stations track by station.id" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station.name)">
+            <ion-item ng-repeat="station in $ctrl.stations track by station.code" ng-click="$ctrl.goToDepartures(station.name)" on-hold="$ctrl.toggleFav(station.name)">
                 {{ ::station.name }}
 
                 <p class="item-note">
-                    {{ ::$ctrl.getDistance(station) }} km
+                    {{ ::station.distance }} km
                 </p>
 
                 <ion-option-button ion-stop-event="click" class="button-assertive" ng-if="$ctrl.isFaved(station.name)" ng-click="$ctrl.toggleFav(station.name)">
