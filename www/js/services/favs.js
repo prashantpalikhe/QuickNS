@@ -31,14 +31,22 @@
 
             var favs = list();
 
-            favs.splice(favs.indexOf(station), 1);
+            var favIndex = favs.findIndex(function(favedStation) {
+                return favedStation.code === station.code;
+            });
+
+            favs.splice(favIndex, 1);
             localStorage.setItem('favs', JSON.stringify(favs));
         }
 
         function has(station) {
             var favs = list();
 
-            return favs.includes(station);
+            var fav = favs.find(function(favedStation) {
+                return favedStation.code === station.code;
+            });
+
+            return fav !== undefined;
         }
 
         function list() {
