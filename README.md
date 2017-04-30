@@ -2,7 +2,7 @@
 
 Quickly find out information about [NS](http://www.ns.nl/) trains leaving to your destination from near-by train stations in the Netherlands. 
 
-![App Screenshot](http://i.imgur.com/jNjeOOT.png "QuickNS")
+<img src="http://i.imgur.com/jNjeOOT.png" width="187.5px" title="QuickNS" alt="QuickNS screenshot" />
 
 # How it works?
 
